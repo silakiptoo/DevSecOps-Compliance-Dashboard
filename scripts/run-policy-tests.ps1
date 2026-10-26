@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop"
 
 # Run from the project root
-$ProjectRoot = "C:\DevSecOps-Compliance"
+$ProjectRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $EvidenceRoot = Join-Path $ProjectRoot "evidence"
 $SummaryPath = Join-Path $EvidenceRoot "policy-test-summary.csv"
 
