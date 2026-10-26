@@ -1,0 +1,137 @@
+﻿{
+    "check_type": "terraform",
+    "results": {
+        "passed_checks": [
+            {
+                "check_id": "CKV_AWS_145",
+                "bc_check_id": "BC_AWS_GENERAL_56",
+                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "compliant_test": {
+                                "__end_line__": 3,
+                                "__start_line__": 1,
+                                "bucket": [
+                                    "devsecops-compliance-test-example"
+                                ],
+                                "__address__": "aws_s3_bucket.compliant_test"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"compliant_test\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"devsecops-compliance-test-example\"\n"
+                    ],
+                    [
+                        3,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "\\s3-encryption.tf",
+                "file_abs_path": "C:\\DevSecOps-Compliance\\tests\\fixtures\\s3-encryption.tf",
+                "repo_file_path": "/tests/fixtures/s3-encryption.tf",
+                "file_line_range": [
+                    1,
+                    3
+                ],
+                "resource": "aws_s3_bucket.compliant_test",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": {
+                    "code_block": [
+                        [
+                            5,
+                            "resource \"aws_s3_bucket_server_side_encryption_configuration\" \"compliant_test\" {\n"
+                        ],
+                        [
+                            6,
+                            "  bucket = aws_s3_bucket.compliant_test.id\n"
+                        ],
+                        [
+                            7,
+                            "\n"
+                        ],
+                        [
+                            8,
+                            "  rule {\n"
+                        ],
+                        [
+                            9,
+                            "    apply_server_side_encryption_by_default {\n"
+                        ],
+                        [
+                            10,
+                            "      sse_algorithm = \"aws:kms\"\n"
+                        ],
+                        [
+                            11,
+                            "    }\n"
+                        ],
+                        [
+                            12,
+                            "    bucket_key_enabled = true\n"
+                        ],
+                        [
+                            13,
+                            "  }\n"
+                        ],
+                        [
+                            14,
+                            "}\n"
+                        ]
+                    ],
+                    "file_path": "\\s3-encryption.tf",
+                    "file_line_range": [
+                        5,
+                        14
+                    ],
+                    "resource": "aws_s3_bucket_server_side_encryption_configuration.compliant_test",
+                    "entity_tags": {},
+                    "evaluations": null,
+                    "file_abs_path": "C:\\DevSecOps-Compliance\\tests\\fixtures\\s3-encryption.tf",
+                    "resource_address": null
+                },
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "C:\\DevSecOps-Compliance\\tests\\fixtures\\s3-encryption.tf"
+            }
+        ],
+        "failed_checks": [],
+        "skipped_checks": [],
+        "parsing_errors": []
+    },
+    "summary": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 3,
+        "checkov_version": "3.3.30"
+    },
+    "url": "Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+}
