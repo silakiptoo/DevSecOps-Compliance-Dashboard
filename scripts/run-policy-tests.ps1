@@ -111,14 +111,39 @@ foreach ($Policy in $Policies) {
             "-o", "json"
         )
 
-        $OutputLines = & checkov @CheckArgs 2>&1
+       
+        $OutputDir = Join-Path $ReportDir "checkov-output"
+        New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
+
+        $CheckArgs = @(
+            "-d", $FixturePath,
+            "--framework", "terraform",
+            "--check", $Policy.Rule,
+            "--output", "json",
+            "--output-file-path", $OutputDir
+        )
+
+        & checkov @CheckArgs
         $ExitCode = $LASTEXITCODE
-        $OutputText = $OutputLines -join "`n"
+
+        # Checkov may name the JSON file results_json.json.
+        $JsonFile = Join-Path $OutputDir "results_json.json"
+
+        if (-not (Test-Path $JsonFile)) {
+            $JsonFile = Join-Path $OutputDir "results.json"
+        }
 
         try {
-            $Report = $OutputText | ConvertFrom-Json -ErrorAction Stop
+            if (-not (Test-Path $JsonFile)) {
+                throw "Checkov did not create a JSON report in $OutputDir"
+            }
+
+            $Report = Get-Content -Path $JsonFile -Raw |
+                ConvertFrom-Json -ErrorAction Stop
+
             $Report | ConvertTo-Json -Depth 100 |
                 Set-Content -Path $ReportPath -Encoding utf8
+
 
             $PassedCount = @($Report.results.passed_checks).Count
             $FailedCount = @($Report.results.failed_checks).Count
