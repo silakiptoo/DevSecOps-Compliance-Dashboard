@@ -1,0 +1,40 @@
+
+name: DevSecOps Compliance Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checkov:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Checkov
+        run: pip install checkov==3.3.30
+
+      - name: Scan Terraform infrastructure
+        run: |
+          checkov -d infra --framework terraform \
+            --output cli \
+            --soft-fail
+
+      - name: Validate policy test fixtures
+        run: |
+          python -m pip install pytest
+          python -m compileall -q tests
