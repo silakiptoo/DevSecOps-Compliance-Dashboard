@@ -51,15 +51,13 @@ jobs:
       - name: Install Checkov
         run: pip install checkov==3.3.30
 
-      - name: Install PowerShell
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y powershell
+      
 
+      
       - name: Run policy tests
         shell: pwsh
         run: ./scripts/run-policy-tests.ps1
+
 
       - name: Upload compliance evidence
         if: always()
