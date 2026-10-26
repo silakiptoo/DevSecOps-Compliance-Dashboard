@@ -1,0 +1,110 @@
+﻿{
+    "check_type":  "terraform",
+    "results":  {
+                    "passed_checks":  [
+
+                                      ],
+                    "failed_checks":  [
+                                          {
+                                              "check_id":  "CKV_AWS_16",
+                                              "bc_check_id":  "BC_AWS_GENERAL_4",
+                                              "check_name":  "Ensure all data stored in the RDS is securely encrypted at rest",
+                                              "check_result":  {
+                                                                   "result":  "FAILED",
+                                                                   "evaluated_keys":  [
+                                                                                          "storage_encrypted"
+                                                                                      ]
+                                                               },
+                                              "code_block":  [
+                                                                 [
+                                                                     1,
+                                                                     "resource \"aws_db_instance\" \"noncompliant_test\" {\n"
+                                                                 ],
+                                                                 [
+                                                                     2,
+                                                                     "  identifier          = \"devsecops-rds-noncompliant-test\"\n"
+                                                                 ],
+                                                                 [
+                                                                     3,
+                                                                     "  engine              = \"postgres\"\n"
+                                                                 ],
+                                                                 [
+                                                                     4,
+                                                                     "  instance_class      = \"db.t3.micro\"\n"
+                                                                 ],
+                                                                 [
+                                                                     5,
+                                                                     "  allocated_storage   = 20\n"
+                                                                 ],
+                                                                 [
+                                                                     6,
+                                                                     "  username            = \"testadmin\"\n"
+                                                                 ],
+                                                                 [
+                                                                     7,
+                                                                     "  password            = \"TemporaryTestPassword123!\"\n"
+                                                                 ],
+                                                                 [
+                                                                     8,
+                                                                     "  skip_final_snapshot = true\n"
+                                                                 ],
+                                                                 [
+                                                                     9,
+                                                                     "  publicly_accessible = false\n"
+                                                                 ],
+                                                                 [
+                                                                     10,
+                                                                     "  storage_encrypted   = false\n"
+                                                                 ],
+                                                                 [
+                                                                     11,
+                                                                     "}"
+                                                                 ]
+                                                             ],
+                                              "file_path":  "\\main.tf",
+                                              "file_abs_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\rds-encryption-noncompliant\\main.tf",
+                                              "repo_file_path":  "/tests/fixtures/rds-encryption-noncompliant/main.tf",
+                                              "file_line_range":  [
+                                                                      1,
+                                                                      11
+                                                                  ],
+                                              "resource":  "aws_db_instance.noncompliant_test",
+                                              "evaluations":  null,
+                                              "check_class":  "checkov.terraform.checks.resource.aws.RDSEncryption",
+                                              "fixed_definition":  null,
+                                              "entity_tags":  null,
+                                              "caller_file_path":  null,
+                                              "caller_file_line_range":  null,
+                                              "resource_address":  null,
+                                              "severity":  null,
+                                              "bc_category":  null,
+                                              "benchmarks":  null,
+                                              "description":  null,
+                                              "short_description":  null,
+                                              "vulnerability_details":  null,
+                                              "connected_node":  null,
+                                              "guideline":  "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-4",
+                                              "details":  [
+
+                                                          ],
+                                              "check_len":  null,
+                                              "definition_context_file_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\rds-encryption-noncompliant\\main.tf"
+                                          }
+                                      ],
+                    "skipped_checks":  [
+
+                                       ],
+                    "parsing_errors":  [
+
+                                       ]
+                },
+    "summary":  {
+                    "passed":  0,
+                    "failed":  1,
+                    "skipped":  0,
+                    "parsing_errors":  0,
+                    "resource_count":  1,
+                    "checkov_version":  "3.3.30"
+                },
+    "url":  "Add an api key \u0027--bc-api-key \u003capi-key\u003e\u0027 to see more detailed insights via https://bridgecrew.cloud"
+}

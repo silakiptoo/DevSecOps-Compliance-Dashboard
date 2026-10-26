@@ -1,0 +1,187 @@
+﻿{
+    "check_type":  "terraform",
+    "results":  {
+                    "passed_checks":  [
+                                          {
+                                              "check_id":  "CKV_AWS_14",
+                                              "bc_check_id":  "BC_AWS_IAM_7",
+                                              "check_name":  "Ensure IAM password policy requires at least one symbol",
+                                              "check_result":  {
+                                                                   "result":  "PASSED",
+                                                                   "evaluated_keys":  [
+                                                                                          "require_symbols"
+                                                                                      ]
+                                                               },
+                                              "code_block":  [
+                                                                 [
+                                                                     1,
+                                                                     "resource \"aws_iam_account_password_policy\" \"compliant\" {\n"
+                                                                 ],
+                                                                 [
+                                                                     2,
+                                                                     "  minimum_password_length        = 14\n"
+                                                                 ],
+                                                                 [
+                                                                     3,
+                                                                     "  require_lowercase_characters   = true\n"
+                                                                 ],
+                                                                 [
+                                                                     4,
+                                                                     "  require_uppercase_characters   = true\n"
+                                                                 ],
+                                                                 [
+                                                                     5,
+                                                                     "  require_numbers                = true\n"
+                                                                 ],
+                                                                 [
+                                                                     6,
+                                                                     "  require_symbols                = true\n"
+                                                                 ],
+                                                                 [
+                                                                     7,
+                                                                     "  allow_users_to_change_password = true\n"
+                                                                 ],
+                                                                 [
+                                                                     8,
+                                                                     "  password_reuse_prevention      = 24\n"
+                                                                 ],
+                                                                 [
+                                                                     9,
+                                                                     "  max_password_age               = 90\n"
+                                                                 ],
+                                                                 [
+                                                                     10,
+                                                                     "}\n"
+                                                                 ]
+                                                             ],
+                                              "file_path":  "\\main.tf",
+                                              "file_abs_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\iam-credentials-compliant\\main.tf",
+                                              "repo_file_path":  "/tests/fixtures/iam-credentials-compliant/main.tf",
+                                              "file_line_range":  [
+                                                                      1,
+                                                                      10
+                                                                  ],
+                                              "resource":  "aws_iam_account_password_policy.compliant",
+                                              "evaluations":  null,
+                                              "check_class":  "checkov.terraform.checks.resource.aws.PasswordPolicySymbol",
+                                              "fixed_definition":  null,
+                                              "entity_tags":  null,
+                                              "caller_file_path":  null,
+                                              "caller_file_line_range":  null,
+                                              "resource_address":  null,
+                                              "severity":  null,
+                                              "bc_category":  null,
+                                              "benchmarks":  null,
+                                              "description":  null,
+                                              "short_description":  null,
+                                              "vulnerability_details":  null,
+                                              "connected_node":  null,
+                                              "guideline":  "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-7",
+                                              "details":  [
+
+                                                          ],
+                                              "check_len":  null,
+                                              "definition_context_file_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\iam-credentials-compliant\\main.tf"
+                                          },
+                                          {
+                                              "check_id":  "CKV_AWS_15",
+                                              "bc_check_id":  "BC_AWS_IAM_5",
+                                              "check_name":  "Ensure IAM password policy requires at least one uppercase letter",
+                                              "check_result":  {
+                                                                   "result":  "PASSED",
+                                                                   "evaluated_keys":  [
+                                                                                          "require_uppercase_characters"
+                                                                                      ]
+                                                               },
+                                              "code_block":  [
+                                                                 [
+                                                                     1,
+                                                                     "resource \"aws_iam_account_password_policy\" \"compliant\" {\n"
+                                                                 ],
+                                                                 [
+                                                                     2,
+                                                                     "  minimum_password_length        = 14\n"
+                                                                 ],
+                                                                 [
+                                                                     3,
+                                                                     "  require_lowercase_characters   = true\n"
+                                                                 ],
+                                                                 [
+                                                                     4,
+                                                                     "  require_uppercase_characters   = true\n"
+                                                                 ],
+                                                                 [
+                                                                     5,
+                                                                     "  require_numbers                = true\n"
+                                                                 ],
+                                                                 [
+                                                                     6,
+                                                                     "  require_symbols                = true\n"
+                                                                 ],
+                                                                 [
+                                                                     7,
+                                                                     "  allow_users_to_change_password = true\n"
+                                                                 ],
+                                                                 [
+                                                                     8,
+                                                                     "  password_reuse_prevention      = 24\n"
+                                                                 ],
+                                                                 [
+                                                                     9,
+                                                                     "  max_password_age               = 90\n"
+                                                                 ],
+                                                                 [
+                                                                     10,
+                                                                     "}\n"
+                                                                 ]
+                                                             ],
+                                              "file_path":  "\\main.tf",
+                                              "file_abs_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\iam-credentials-compliant\\main.tf",
+                                              "repo_file_path":  "/tests/fixtures/iam-credentials-compliant/main.tf",
+                                              "file_line_range":  [
+                                                                      1,
+                                                                      10
+                                                                  ],
+                                              "resource":  "aws_iam_account_password_policy.compliant",
+                                              "evaluations":  null,
+                                              "check_class":  "checkov.terraform.checks.resource.aws.PasswordPolicyUppercaseLetter",
+                                              "fixed_definition":  null,
+                                              "entity_tags":  null,
+                                              "caller_file_path":  null,
+                                              "caller_file_line_range":  null,
+                                              "resource_address":  null,
+                                              "severity":  null,
+                                              "bc_category":  null,
+                                              "benchmarks":  null,
+                                              "description":  null,
+                                              "short_description":  null,
+                                              "vulnerability_details":  null,
+                                              "connected_node":  null,
+                                              "guideline":  "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-5",
+                                              "details":  [
+
+                                                          ],
+                                              "check_len":  null,
+                                              "definition_context_file_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\iam-credentials-compliant\\main.tf"
+                                          }
+                                      ],
+                    "failed_checks":  [
+
+                                      ],
+                    "skipped_checks":  [
+
+                                       ],
+                    "parsing_errors":  [
+
+                                       ]
+                },
+    "summary":  {
+                    "passed":  2,
+                    "failed":  0,
+                    "skipped":  0,
+                    "parsing_errors":  0,
+                    "resource_count":  1,
+                    "checkov_version":  "3.3.30"
+                },
+    "url":  "Add an api key \u0027--bc-api-key \u003capi-key\u003e\u0027 to see more detailed insights via https://bridgecrew.cloud"
+}

@@ -1,0 +1,169 @@
+﻿{
+    "check_type":  "terraform",
+    "results":  {
+                    "passed_checks":  [
+                                          {
+                                              "check_id":  "CKV_AWS_25",
+                                              "bc_check_id":  "BC_AWS_NETWORKING_2",
+                                              "check_name":  "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+                                              "check_result":  {
+                                                                   "result":  "PASSED",
+                                                                   "evaluated_keys":  [
+
+                                                                                      ]
+                                                               },
+                                              "code_block":  [
+                                                                 [
+                                                                     3,
+                                                                     "resource \"aws_security_group\" \"rdp_test\" {\n"
+                                                                 ],
+                                                                 [
+                                                                     4,
+                                                                     "  name        = \"devsecops-rdp-compliant-test\"\n"
+                                                                 ],
+                                                                 [
+                                                                     5,
+                                                                     "  description = \"Test fixture with RDP restricted to a trusted network\"\n"
+                                                                 ],
+                                                                 [
+                                                                     6,
+                                                                     "\n"
+                                                                 ],
+                                                                 [
+                                                                     7,
+                                                                     "  ingress {\n"
+                                                                 ],
+                                                                 [
+                                                                     8,
+                                                                     "    description = \"RDP from trusted network only\"\n"
+                                                                 ],
+                                                                 [
+                                                                     9,
+                                                                     "    from_port   = 3389\n"
+                                                                 ],
+                                                                 [
+                                                                     10,
+                                                                     "    to_port     = 3389\n"
+                                                                 ],
+                                                                 [
+                                                                     11,
+                                                                     "    protocol    = \"tcp\"\n"
+                                                                 ],
+                                                                 [
+                                                                     12,
+                                                                     "    cidr_blocks = [\"10.0.0.0/8\"]\n"
+                                                                 ],
+                                                                 [
+                                                                     13,
+                                                                     "  }\n"
+                                                                 ],
+                                                                 [
+                                                                     14,
+                                                                     "\n"
+                                                                 ],
+                                                                 [
+                                                                     15,
+                                                                     "  egress {\n"
+                                                                 ],
+                                                                 [
+                                                                     16,
+                                                                     "    description = \"HTTPS outbound only\"\n"
+                                                                 ],
+                                                                 [
+                                                                     17,
+                                                                     "    from_port   = 443\n"
+                                                                 ],
+                                                                 [
+                                                                     18,
+                                                                     "    to_port     = 443\n"
+                                                                 ],
+                                                                 [
+                                                                     19,
+                                                                     "    protocol    = \"tcp\"\n"
+                                                                 ],
+                                                                 [
+                                                                     20,
+                                                                     "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                                                                 ],
+                                                                 [
+                                                                     21,
+                                                                     "  }\n"
+                                                                 ],
+                                                                 [
+                                                                     22,
+                                                                     "\n"
+                                                                 ],
+                                                                 [
+                                                                     23,
+                                                                     "  tags = {\n"
+                                                                 ],
+                                                                 [
+                                                                     24,
+                                                                     "    Name        = \"devsecops-rdp-compliant-test\"\n"
+                                                                 ],
+                                                                 [
+                                                                     25,
+                                                                     "    Environment = \"test\"\n"
+                                                                 ],
+                                                                 [
+                                                                     26,
+                                                                     "  }\n"
+                                                                 ],
+                                                                 [
+                                                                     27,
+                                                                     "}\n"
+                                                                 ]
+                                                             ],
+                                              "file_path":  "\\main.tf",
+                                              "file_abs_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\rdp-ingress-compliant\\main.tf",
+                                              "repo_file_path":  "/tests/fixtures/rdp-ingress-compliant/main.tf",
+                                              "file_line_range":  [
+                                                                      3,
+                                                                      27
+                                                                  ],
+                                              "resource":  "aws_security_group.rdp_test",
+                                              "evaluations":  null,
+                                              "check_class":  "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress3389",
+                                              "fixed_definition":  null,
+                                              "entity_tags":  {
+                                                                  "Environment":  "test",
+                                                                  "Name":  "devsecops-rdp-compliant-test"
+                                                              },
+                                              "caller_file_path":  null,
+                                              "caller_file_line_range":  null,
+                                              "resource_address":  null,
+                                              "severity":  null,
+                                              "bc_category":  null,
+                                              "benchmarks":  null,
+                                              "description":  null,
+                                              "short_description":  null,
+                                              "vulnerability_details":  null,
+                                              "connected_node":  null,
+                                              "guideline":  "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
+                                              "details":  [
+
+                                                          ],
+                                              "check_len":  null,
+                                              "definition_context_file_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\rdp-ingress-compliant\\main.tf"
+                                          }
+                                      ],
+                    "failed_checks":  [
+
+                                      ],
+                    "skipped_checks":  [
+
+                                       ],
+                    "parsing_errors":  [
+
+                                       ]
+                },
+    "summary":  {
+                    "passed":  1,
+                    "failed":  0,
+                    "skipped":  0,
+                    "parsing_errors":  0,
+                    "resource_count":  1,
+                    "checkov_version":  "3.3.30"
+                },
+    "url":  "Add an api key \u0027--bc-api-key \u003capi-key\u003e\u0027 to see more detailed insights via https://bridgecrew.cloud"
+}

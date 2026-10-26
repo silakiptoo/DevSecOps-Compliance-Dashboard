@@ -1,0 +1,104 @@
+﻿{
+    "check_type":  "terraform",
+    "results":  {
+                    "passed_checks":  [
+                                          {
+                                              "check_id":  "CKV_AWS_3",
+                                              "bc_check_id":  "BC_AWS_GENERAL_3",
+                                              "check_name":  "Ensure all data stored in the EBS is securely encrypted",
+                                              "check_result":  {
+                                                                   "result":  "PASSED",
+                                                                   "evaluated_keys":  [
+                                                                                          "encrypted"
+                                                                                      ]
+                                                               },
+                                              "code_block":  [
+                                                                 [
+                                                                     1,
+                                                                     "resource \"aws_ebs_volume\" \"compliant_test\" {\n"
+                                                                 ],
+                                                                 [
+                                                                     2,
+                                                                     "  availability_zone = \"us-east-1a\"\n"
+                                                                 ],
+                                                                 [
+                                                                     3,
+                                                                     "  size              = 1\n"
+                                                                 ],
+                                                                 [
+                                                                     4,
+                                                                     "  encrypted         = true\n"
+                                                                 ],
+                                                                 [
+                                                                     5,
+                                                                     "\n"
+                                                                 ],
+                                                                 [
+                                                                     6,
+                                                                     "  tags = {\n"
+                                                                 ],
+                                                                 [
+                                                                     7,
+                                                                     "    Name = \"devsecops-ebs-compliant-test\"\n"
+                                                                 ],
+                                                                 [
+                                                                     8,
+                                                                     "  }\n"
+                                                                 ],
+                                                                 [
+                                                                     9,
+                                                                     "}"
+                                                                 ]
+                                                             ],
+                                              "file_path":  "\\main.tf",
+                                              "file_abs_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\ebs-encryption-compliant\\main.tf",
+                                              "repo_file_path":  "/tests/fixtures/ebs-encryption-compliant/main.tf",
+                                              "file_line_range":  [
+                                                                      1,
+                                                                      9
+                                                                  ],
+                                              "resource":  "aws_ebs_volume.compliant_test",
+                                              "evaluations":  null,
+                                              "check_class":  "checkov.terraform.checks.resource.aws.EBSEncryption",
+                                              "fixed_definition":  null,
+                                              "entity_tags":  {
+                                                                  "Name":  "devsecops-ebs-compliant-test"
+                                                              },
+                                              "caller_file_path":  null,
+                                              "caller_file_line_range":  null,
+                                              "resource_address":  null,
+                                              "severity":  null,
+                                              "bc_category":  null,
+                                              "benchmarks":  null,
+                                              "description":  null,
+                                              "short_description":  null,
+                                              "vulnerability_details":  null,
+                                              "connected_node":  null,
+                                              "guideline":  "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-3-encrypt-ebs-volume",
+                                              "details":  [
+
+                                                          ],
+                                              "check_len":  null,
+                                              "definition_context_file_path":  "C:\\DevSecOps-Compliance\\tests\\fixtures\\ebs-encryption-compliant\\main.tf"
+                                          }
+                                      ],
+                    "failed_checks":  [
+
+                                      ],
+                    "skipped_checks":  [
+
+                                       ],
+                    "parsing_errors":  [
+
+                                       ]
+                },
+    "summary":  {
+                    "passed":  1,
+                    "failed":  0,
+                    "skipped":  0,
+                    "parsing_errors":  0,
+                    "resource_count":  1,
+                    "checkov_version":  "3.3.30"
+                },
+    "url":  "Add an api key \u0027--bc-api-key \u003capi-key\u003e\u0027 to see more detailed insights via https://bridgecrew.cloud"
+}
