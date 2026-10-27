@@ -115,12 +115,22 @@ foreach ($Policy in $Policies) {
         $OutputDir = Join-Path $ReportDir "checkov-output"
         New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
-        $CheckArgs = @(
-            "-d", $FixturePath,
-            "--framework", "terraform",
-            "--check", $Policy.Rule,
-            "--output", "json",
-            "--output-file-path", $OutputDir
+        
+# Use -f for individual Terraform files and -d for directories.
+if (Test-Path -LiteralPath $FixturePath -PathType Leaf) {
+    $ScanTargetArgs = @("-f", $FixturePath)
+}
+else {
+    $ScanTargetArgs = @("-d", $FixturePath)
+}
+
+$CheckArgs = $ScanTargetArgs + @(
+    "--framework", "terraform",
+    "--check", $Policy.Rule,
+    "--output", "json",
+    "--output-file-path", $OutputDir
+)
+
         )
 
         & checkov @CheckArgs
