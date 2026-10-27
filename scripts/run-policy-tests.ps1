@@ -74,10 +74,20 @@ $Policies = @(
 $Results = [System.Collections.Generic.List[object]]::new()
 
 foreach ($Policy in $Policies) {
-    foreach ($Case in @(
-        @{ Type = "Compliant"; Path = $Policy.Compliant; ExpectFailure = $false },
-        @{ Type = "NonCompliant"; Path = $Policy.NonCompliant; ExpectFailure = $true }
-    )) {
+    $Cases = @(
+        @{
+            Type = "Compliant"
+            Path = $Policy.Compliant
+            ExpectFailure = $false
+        },
+        @{
+            Type = "NonCompliant"
+            Path = $Policy.NonCompliant
+            ExpectFailure = $true
+        }
+    )
+
+    foreach ($Case in $Cases) {
         $FixturePath = Join-Path $ProjectRoot $Case.Path
         $ReportDir = Join-Path $EvidenceRoot (
             "$($Policy.Id)-$($Case.Type.ToLower())"
